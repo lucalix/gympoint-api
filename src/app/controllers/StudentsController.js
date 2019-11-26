@@ -64,7 +64,7 @@ class StudentsController {
     }
 
     if (email && email !== student.email) {
-      const emailExists = Students.findOne({ where: { email } });
+      const emailExists = await Students.findOne({ where: { email } });
 
       if (emailExists) {
         return res.status(400).json({ error: 'E-mail already exists.' });
@@ -76,6 +76,7 @@ class StudentsController {
     return res.json({
       id,
       name,
+      email,
       age,
       weight,
       height,
